@@ -1,0 +1,9 @@
+.CardContainer {
+  width: 100%;
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  margin: 0;
+  list-style: none;
+  background-color: #c3c0c0;
+}

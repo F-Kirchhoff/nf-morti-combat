@@ -1,15 +1,19 @@
 import { createElement } from '../lib/dom.js'
+import Card from './Card.js'
 
-import './App.css'
+import './CardContainer.css'
 
-export default function CardContainer() {
-  const el = createElement(
-    'ul',
-    {
-      className: 'CardContainer',
-    },
-    'cardcontainer'
-  )
+export default function CardContainer(cards) {
+  const el = createElement('ul', {
+    className: 'CardContainer',
+  })
 
-  return el
+  setCards(cards)
+
+  return { el, setCards }
+
+  function setCards(cards) {
+    el.innerHTML = ''
+    el.append(...cards.map(text => Card(text)))
+  }
 }

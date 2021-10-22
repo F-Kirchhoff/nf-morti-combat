@@ -1,14 +1,18 @@
-import { createElement, rerender } from '../lib/dom.js'
+import { createElement } from '../lib/dom.js'
 import './App.css'
 import CardContainer from './CardContainer.js'
 import Nav from './Nav.js'
 
-export default function App({ query, cards }) {
-  function setQuery(newQuery) {
-    rerender(App, '.App', {
-      query: newQuery,
-      cards,
-    })
+export default function App() {
+  const model = {
+    cards: [],
+  }
+
+  const { el: cardContainer, setCards } = CardContainer(model.cards)
+
+  function appendCard(newCard) {
+    model.cards = [...model.cards, newCard]
+    setCards(model.cards)
   }
 
   const el = createElement(
@@ -16,8 +20,8 @@ export default function App({ query, cards }) {
     {
       className: 'App',
     },
-    Nav(query, setQuery),
-    CardContainer(cards)
+    Nav(appendCard),
+    cardContainer
   )
 
   return el

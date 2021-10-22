@@ -9,12 +9,6 @@ export function createElement(elementType, props, ...children) {
   return element
 }
 
-export function rerender(constructor, selector, props) {
-  const oldEl = getBySelector(selector)
-  const newEl = constructor(props)
-  oldEl.innerHTML = newEl.innerHTML
-}
-
 export function getByDataJs(dataJs, target = document) {
   return target.querySelector('[data-js=' + dataJs + ']')
 }
