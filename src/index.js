@@ -1,7 +1,7 @@
-import Example from './components/Example'
+import App from './components/App'
 import { getBySelector } from './lib/dom'
 import './styles/index.css'
 
-const example = Example('Vite Starter')
+const app = App({ query: '', cards: [] })
 
-getBySelector('#app').append(example)
+getBySelector('#app').append(app)
