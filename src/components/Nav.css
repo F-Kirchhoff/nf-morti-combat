@@ -6,9 +6,19 @@
   font-weight: 500;
   background: steelblue;
   padding: 12px;
-  color: white;
+  background-color: #201f1e;
+  color: #e0efe0;
 }
 
 .Nav__input {
   width: 100%;
+  background-color: transparent;
+  color: #e0efe0;
+  border: none;
+  border-bottom: solid 1px #e0efe0;
+}
+
+.Nav__input:focus {
+  outline: none;
+  border-bottom: solid 3px #e0efe0;
 }
