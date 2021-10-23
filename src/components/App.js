@@ -3,14 +3,13 @@ import CardContainer from './CardContainer.js'
 import fetchData from '../lib/fetchData.js'
 import './App.css'
 import Nav from './Nav.js'
+import Button from './Button.js'
 
 export default function App() {
-  const model = {
-    cards: [],
-  }
-
-  const { el: cardContainer, setCharacters } = CardContainer(model.cards)
-  const nav = Nav(appendCard)
+  const { el: cardContainer, setCharacters } = CardContainer()
+  const nav = Nav(searchCharactersAndDisplay)
+  const buttonPreviousPage = Button('Prev', onButtonPrev)
+  const buttonNextPage = Button('Next', onButtonNext)
 
   const app = createElement(
     'div',
@@ -18,15 +17,26 @@ export default function App() {
       className: 'App',
     },
     nav,
-    cardContainer
+    cardContainer,
+    buttonPreviousPage,
+    buttonNextPage
   )
 
   return app
 
-  function appendCard(newCard) {
-    model.cards = [...model.cards, newCard]
-    fetchData(newCard).then(characters => {
-      setCharacters(characters)
+  function searchCharactersAndDisplay(searchTerm) {
+    fetchData(searchTerm).then(fetchedData => {
+      setCharacters(fetchedData.results)
+      const next = fetchedData.info.next
+      const prev = fetchedData.info.prev
+      console.log({ next, prev })
     })
+  }
+
+  function onButtonPrev() {
+    console.log('Prev Button was clicked!')
+  }
+  function onButtonNext() {
+    console.log('Next Button was clicked!')
   }
 }

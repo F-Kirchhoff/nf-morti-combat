@@ -1,7 +1,7 @@
 import { createElement } from '../lib/dom.js'
 import './Nav.css'
 
-export default function Nav(handleSubmit) {
+export default function Nav(onSubmit) {
   const InputField = createElement('input', {
     type: 'text',
     name: 'query',
@@ -23,11 +23,11 @@ export default function Nav(handleSubmit) {
     SubmitButton
   )
 
-  handleSubmit('rick')
+  onSubmit('rick')
 
   Form.addEventListener('submit', event => {
     event.preventDefault()
-    handleSubmit(Form.elements.query.value)
+    onSubmit(Form.elements.query.value)
   })
 
   return Form
