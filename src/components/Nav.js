@@ -23,6 +23,8 @@ export default function Nav(handleSubmit) {
     SubmitButton
   )
 
+  handleSubmit('rick')
+
   Form.addEventListener('submit', event => {
     event.preventDefault()
     handleSubmit(Form.elements.query.value)

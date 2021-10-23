@@ -20,7 +20,7 @@ export default function Card(character) {
   })
   const ExpandButton = createElement('button', {
     className: 'Card__button',
-    innerText: 'more',
+    innerText: '🡻',
   })
 
   ExpandButton.addEventListener('click', () => {
@@ -28,7 +28,7 @@ export default function Card(character) {
       ..._state,
       isOpen: !_state.isOpen,
     }
-    ExpandButton.innerText = _state.isOpen ? 'less' : 'more'
+    ExpandButton.innerText = _state.isOpen ? '🡹' : '🡻'
     renderInfo(_state)
   })
 
