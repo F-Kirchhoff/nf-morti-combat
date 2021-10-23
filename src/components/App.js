@@ -1,6 +1,7 @@
 import { createElement } from '../lib/dom.js'
-import './App.css'
 import CardContainer from './CardContainer.js'
+import fetchData from '../lib/fetchData.js'
+import './App.css'
 import Nav from './Nav.js'
 
 export default function App() {
@@ -8,21 +9,24 @@ export default function App() {
     cards: [],
   }
 
-  const { el: cardContainer, setCards } = CardContainer(model.cards)
+  const { el: cardContainer, setCharacters } = CardContainer(model.cards)
+  const nav = Nav(appendCard)
 
-  function appendCard(newCard) {
-    model.cards = [...model.cards, newCard]
-    setCards(model.cards)
-  }
-
-  const el = createElement(
+  const app = createElement(
     'div',
     {
       className: 'App',
     },
-    Nav(appendCard),
+    nav,
     cardContainer
   )
 
-  return el
+  return app
+
+  function appendCard(newCard) {
+    model.cards = [...model.cards, newCard]
+    fetchData(newCard).then(characters => {
+      setCharacters(characters)
+    })
+  }
 }

@@ -3,17 +3,24 @@ import Card from './Card.js'
 
 import './CardContainer.css'
 
-export default function CardContainer(cards) {
+export default function CardContainer() {
+  let characters = []
+
   const el = createElement('ul', {
     className: 'CardContainer',
   })
 
-  setCards(cards)
+  setCharacters(characters)
 
-  return { el, setCards }
+  return { el, setCharacters }
 
-  function setCards(cards) {
-    el.innerHTML = ''
-    el.append(...cards.map(text => Card(text)))
+  function setCharacters(newCharacters) {
+    characters = newCharacters
+
+    renderCards(characters)
+  }
+  function renderCards(characters) {
+    el.innerHTML = '' //reset innerHTML
+    el.append(...characters.map(character => Card(character)))
   }
 }
