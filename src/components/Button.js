@@ -1,9 +1,9 @@
 import { createElement } from '../lib/dom.js'
 import './Button.css'
 
-export default function Button(text, onClick) {
+export default function Button(text, onClick, className) {
   const button = createElement('button', {
-    className: 'button',
+    className: className,
     innerText: text,
   })
 

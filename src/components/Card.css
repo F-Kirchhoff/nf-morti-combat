@@ -1,19 +1,20 @@
 .Card {
-  color: #b1a9a1;
-  background-color: #201f1e;
+  color: #3ecab3;
+  background-color: #f8fe76;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 20px;
   border-radius: 10px;
-  border-top-right-radius: 100px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 80px;
   box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
   align-self: start;
   border-style: solid;
   border-width: 4px;
-  border-color: white;
+  border-color: #3ecab3;
 }
 
 .Card__title {
@@ -22,11 +23,11 @@
 
 .Card__img {
   border-radius: 10px;
-  border-top-right-radius: 45%;
-  border-bottom-left-radius: 45%;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
   border-style: solid;
   border-width: 4px;
-  border-color: white;
+  border-color: #3ecab3;
 }
 
 .Card__text {
