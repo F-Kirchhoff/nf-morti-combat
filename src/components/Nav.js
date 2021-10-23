@@ -8,6 +8,7 @@ export default function Nav(handleSubmit) {
     placeholder: 'Search for a character',
     className: 'js-nav-input Nav__input',
   })
+
   const SubmitButton = createElement('button', {
     type: 'submit',
     className: 'Nav__Button',

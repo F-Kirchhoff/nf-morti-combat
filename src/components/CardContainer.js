@@ -1,5 +1,5 @@
 import { createElement } from '../lib/dom.js'
-import Card from './Card.js'
+// import Card from './Card.js'
 
 import './CardContainer.css'
 
@@ -10,17 +10,16 @@ export default function CardContainer() {
     className: 'CardContainer',
   })
 
-  setCharacters(characters)
+  displayCharacters(characters)
 
-  return { el, setCharacters }
+  return { el, displayCharacters }
 
-  function setCharacters(newCharacters) {
+  function displayCharacters(newCharacters) {
     characters = newCharacters
 
     renderCards(characters)
   }
   function renderCards(characters) {
-    el.innerHTML = '' //reset innerHTML
-    el.append(...characters.map(character => Card(character)))
+    console.log(characters)
   }
 }

@@ -1,16 +1,14 @@
 import { createElement } from '../lib/dom.js'
-import CardContainer from './CardContainer.js'
 import fetchData from '../lib/fetchData.js'
-import './App.css'
+
+import CardContainer from './CardContainer.js'
 import Nav from './Nav.js'
 
-export default function App() {
-  const model = {
-    cards: [],
-  }
+import './App.css'
 
-  const { el: cardContainer, setCharacters } = CardContainer(model.cards)
-  const nav = Nav(appendCard)
+export default function App() {
+  const nav = Nav(searchCharactersAndDisplay)
+  const { el: cardContainer, displayCharacters } = CardContainer()
 
   const app = createElement(
     'div',
@@ -23,10 +21,9 @@ export default function App() {
 
   return app
 
-  function appendCard(newCard) {
-    model.cards = [...model.cards, newCard]
-    fetchData(newCard).then(characters => {
-      setCharacters(characters)
+  function searchCharactersAndDisplay(searchTerm) {
+    fetchData(searchTerm).then(characters => {
+      displayCharacters(characters)
     })
   }
 }
