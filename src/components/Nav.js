@@ -1,4 +1,5 @@
 import { createElement } from '../lib/dom.js'
+import { createAdress } from '../lib/fetchData.js'
 import './Nav.css'
 
 export default function Nav(onSubmit) {
@@ -23,11 +24,12 @@ export default function Nav(onSubmit) {
     SubmitButton
   )
 
-  onSubmit('rick')
+  onSubmit(createAdress('rick'))
 
   Form.addEventListener('submit', event => {
     event.preventDefault()
-    onSubmit(Form.elements.query.value)
+
+    onSubmit(createAdress(Form.elements.query.value))
   })
 
   return Form

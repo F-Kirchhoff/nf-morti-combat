@@ -4,7 +4,7 @@ import './Button.css'
 export default function Button(text, onClick, className) {
   const button = createElement('button', {
     className: className,
-    innerText: text,
+    innerHTML: text,
   })
 
   button.addEventListener('click', () => {
