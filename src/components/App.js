@@ -15,14 +15,14 @@ export default function App() {
   }
 
   const { el: cardContainer, setCharacters } = CardContainer()
-  const nav = Nav(updateContent)
+  const { Form: nav, clearInput } = Nav(updateContent)
   const buttonPrevPage = Button(
-    ' \u{1F878}',
+    '<i class="im im-angle-left"></i>',
     onButtonPrev,
     'Button Button--prev Button--inactive'
   )
   const buttonNextPage = Button(
-    '\u{1F87a}',
+    '<i class="im im-angle-right"></i>',
     onButtonNext,
     'Button Button--next Button--inactive'
   )
@@ -80,6 +80,7 @@ export default function App() {
     updateContent(buttonAdresses.next)
   }
   function onButtonRandom() {
+    clearInput()
     const randomId = Math.ceil(Math.random() * NumberOfCharacters)
     const address = createAdressWithId(randomId)
     updateContent(address)

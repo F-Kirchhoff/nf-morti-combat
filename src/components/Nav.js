@@ -28,9 +28,13 @@ export default function Nav(onSubmit) {
 
   Form.addEventListener('submit', event => {
     event.preventDefault()
-
     onSubmit(createAdress(Form.elements.query.value))
+    clearInput()
   })
 
-  return Form
+  return { Form, clearInput }
+
+  function clearInput() {
+    InputField.value = ''
+  }
 }
