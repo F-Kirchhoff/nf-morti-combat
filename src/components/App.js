@@ -1,14 +1,22 @@
 import { createElement } from '../lib/dom.js'
 import CardContainer from './CardContainer.js'
 import fetchData from '../lib/fetchData.js'
+import { createAdressWithId } from '../lib/fetchData.js'
 import './App.css'
 import Nav from './Nav.js'
 import Button from './Button.js'
 
+const NumberOfCharacters = 671
+
 export default function App() {
+  const buttonAdresses = {
+    prev: 'nothing here',
+    next: 'hello :3',
+  }
+
   const { el: cardContainer, setCharacters } = CardContainer()
-  const nav = Nav(searchCharactersAndDisplay)
-  const buttonPreviousPage = Button(
+  const nav = Nav(updateContent)
+  const buttonPrevPage = Button(
     ' \u{1F878}',
     onButtonPrev,
     'Button Button--prev Button--inactive'
@@ -16,7 +24,12 @@ export default function App() {
   const buttonNextPage = Button(
     '\u{1F87a}',
     onButtonNext,
-    'Button Button--next'
+    'Button Button--next Button--inactive'
+  )
+  const buttonRandomCharacter = Button(
+    '?',
+    onButtonRandom,
+    'Button Button--random'
   )
 
   const app = createElement(
@@ -26,25 +39,66 @@ export default function App() {
     },
     nav,
     cardContainer,
-    buttonPreviousPage,
-    buttonNextPage
+    buttonPrevPage,
+    buttonNextPage,
+    buttonRandomCharacter
   )
 
   return app
 
-  function searchCharactersAndDisplay(searchTerm) {
-    fetchData(searchTerm).then(fetchedData => {
-      setCharacters(fetchedData.results)
-      const next = fetchedData.info.next
-      const prev = fetchedData.info.prev
-      console.log({ next, prev })
+  function updateContent(address) {
+    fetchData(address).then(fetchedData => {
+      if (!fetchedData.info) {
+        const singleCharacterResult = {
+          info: {
+            next: null,
+            prev: null,
+          },
+          results: [fetchedData],
+        }
+
+        updatePageButtons(singleCharacterResult.info)
+        setCharacters(singleCharacterResult.results)
+      } else {
+        updatePageButtons(fetchedData.info)
+        setCharacters(fetchedData.results)
+      }
     })
   }
 
+  function setButtonAdresses(newAdresses) {
+    buttonAdresses.prev = newAdresses.prev
+    buttonAdresses.next = newAdresses.next
+  }
+
   function onButtonPrev() {
-    console.log('Prev Button was clicked!')
+    if (!buttonAdresses.prev) return
+    updateContent(buttonAdresses.prev)
   }
   function onButtonNext() {
-    console.log('Next Button was clicked!')
+    if (!buttonAdresses.next) return
+    updateContent(buttonAdresses.next)
+  }
+  function onButtonRandom() {
+    const randomId = Math.ceil(Math.random() * NumberOfCharacters)
+    const address = createAdressWithId(randomId)
+    updateContent(address)
+  }
+
+  function updatePageButtons(infoObj) {
+    if (infoObj.next) {
+      buttonNextPage.classList.remove('Button--inactive')
+    } else {
+      buttonNextPage.classList.add('Button--inactive')
+    }
+    if (infoObj.prev) {
+      buttonPrevPage.classList.remove('Button--inactive')
+    } else {
+      buttonPrevPage.classList.add('Button--inactive')
+    }
+    setButtonAdresses({
+      next: infoObj.next,
+      prev: infoObj.prev,
+    })
   }
 }

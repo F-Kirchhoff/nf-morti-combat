@@ -23,8 +23,17 @@
   left: 10px;
 }
 
+.Button--random {
+  top: 100px;
+  right: 10px;
+  color: #be1959;
+  background-color: #f05ba0;
+  position: fixed;
+  border: solid 5px #b90f64;
+}
+
 .Button--inactive {
-  border: solid 5px #818181;
-  color: #f0efef;
-  background-color: #c1c2c2;
+  border: solid 5px #99abb8;
+  color: #e0e8ee;
+  background-color: #b7cbdd;
 }
