@@ -6,22 +6,36 @@
   font-weight: 500;
   background: steelblue;
   padding: 12px;
-  background-color: #201f1e;
-  color: #e0efe0;
+  background-color: #f8fe76;
+  border-bottom: #3ecab3 4px solid;
 }
 
 .Nav__input {
   width: 100%;
   background-color: transparent;
-  color: #e0efe0;
+  color: #444;
+  font-weight: bold;
   border: none;
-  border-bottom: solid 1px #e0efe0;
+  border-bottom: solid 1px #f8fe76;
+  font-size: 24px;
 }
 
 .Nav__input:focus {
   outline: none;
-  border-bottom: solid 3px #e0efe0;
+  border-bottom: solid 3px #f8fe76;
 }
 
-Nav__Button {
+.Nav__Button {
+  background-color: #f8fe76;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-color: #3ecab3;
+  color: #3ecab3;
+  font-size: 32px;
+  padding: 5px 25px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0 1px 3px -1px;
 }
