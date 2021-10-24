@@ -8,8 +8,16 @@ import Button from './Button.js'
 export default function App() {
   const { el: cardContainer, setCharacters } = CardContainer()
   const nav = Nav(searchCharactersAndDisplay)
-  const buttonPreviousPage = Button('Prev', onButtonPrev, 'Button__prev')
-  const buttonNextPage = Button('Next', onButtonNext, 'Button__next')
+  const buttonPreviousPage = Button(
+    ' \u{1F878}',
+    onButtonPrev,
+    'Button Button--prev Button--inactive'
+  )
+  const buttonNextPage = Button(
+    '\u{1F87a}',
+    onButtonNext,
+    'Button Button--next'
+  )
 
   const app = createElement(
     'div',

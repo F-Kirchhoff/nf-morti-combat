@@ -11,7 +11,7 @@ export default function Nav(onSubmit) {
   const SubmitButton = createElement('button', {
     type: 'submit',
     className: 'Nav__Button',
-    innerText: 'search',
+    innerHTML: '<i class="im im-magnifier"></i>',
   })
 
   const Form = createElement(
