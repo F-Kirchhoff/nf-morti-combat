@@ -20,7 +20,7 @@ export default function Card(character) {
   })
   const ExpandButton = createElement('button', {
     className: 'Card__button',
-    innerText: '\u{1F87b}',
+    innerHTML: '<i class="im im-angle-down"></i>',
   })
 
   ExpandButton.addEventListener('click', () => {
@@ -28,7 +28,9 @@ export default function Card(character) {
       ..._state,
       isOpen: !_state.isOpen,
     }
-    ExpandButton.innerText = _state.isOpen ? '\u{1F879}' : '\u{1F87b}'
+    ExpandButton.innerHTML = _state.isOpen
+      ? '<i class="im im-angle-up"></i>'
+      : '<i class="im im-angle-down"></i>'
     renderInfo(_state)
   })
 
