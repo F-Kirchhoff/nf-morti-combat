@@ -14,8 +14,15 @@ export default function App() {
     prev: 'nothing here',
     next: 'hello :3',
   }
+  const playerCards = {
+    p1: null,
+    p2: null,
+  }
 
-  const { el: cardContainer, setCharacters } = CardContainer()
+  const { el: cardContainer, setCharacters } = CardContainer(
+    setPlayerCards,
+    playerCards
+  )
   const { Form: nav, clearInput } = Nav(updateContent)
   const buttonPrevPage = Button(
     '<i class="im im-angle-left"></i>',
@@ -51,6 +58,7 @@ export default function App() {
 
   function updateContent(address) {
     clearInput()
+    console.log(playerCards)
     fetchData(address).then(fetchedData => {
       if (!fetchedData.info) {
         const singleCharacterResult = {
@@ -104,5 +112,10 @@ export default function App() {
       next: infoObj.next,
       prev: infoObj.prev,
     })
+  }
+
+  function setPlayerCards(player, card) {
+    playerCards[player] = card
+    console.log(playerCards)
   }
 }
