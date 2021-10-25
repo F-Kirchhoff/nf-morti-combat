@@ -24,8 +24,6 @@ export default function Nav(onSubmit) {
     SubmitButton
   )
 
-  onSubmit(createAdress('rick'))
-
   Form.addEventListener('submit', event => {
     event.preventDefault()
     onSubmit(createAdress(Form.elements.query.value))

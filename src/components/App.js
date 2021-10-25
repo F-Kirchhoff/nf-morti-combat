@@ -1,6 +1,7 @@
 import { createElement } from '../lib/dom.js'
 import CardContainer from './CardContainer.js'
 import fetchData from '../lib/fetchData.js'
+import { createAdress } from '../lib/fetchData.js'
 import { createAdressWithId } from '../lib/fetchData.js'
 import './App.css'
 import Nav from './Nav.js'
@@ -44,9 +45,12 @@ export default function App() {
     buttonRandomCharacter
   )
 
+  updateContent(createAdress('rick'))
+
   return app
 
   function updateContent(address) {
+    clearInput()
     fetchData(address).then(fetchedData => {
       if (!fetchedData.info) {
         const singleCharacterResult = {
@@ -80,7 +84,6 @@ export default function App() {
     updateContent(buttonAdresses.next)
   }
   function onButtonRandom() {
-    clearInput()
     const randomId = Math.ceil(Math.random() * NumberOfCharacters)
     const address = createAdressWithId(randomId)
     updateContent(address)
